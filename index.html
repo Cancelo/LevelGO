@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8"/>
+		<title>PowerLevel GO</title>
+		<style type="text/css">
+			img {
+				width: 100px;
+			}
+
+			table, td, tr, th {
+				border: 1px solid #000;
+			}
+
+			.cell {
+				width: 100px;
+			}
+
+			.center {
+				text-align: center;
+				border: 0px;
+				background: #f9f9f9;
+			}
+
+			#total, #tiempo {
+				background: #FFF176;
+			}
+		</style>
+	</head>
+	<body>
+		<table>
+		  <tr>
+		  	<th class="center"></th>
+		  	<th><img src="wee.png"/></th>
+		    <th><img src="pid.png"/></th>
+		    <th><img src="rat.png"/></th>
+		    <th><img src="zub.png"/></th>
+		    <th><img src="spe.png"/></th>
+		    <th>TOTAL</th>
+		  </tr>
+		  <tr>
+		  	<td class="center">Caramelos</td>
+		  	<td><input class="cell" id="wee" type="text"/></td>
+		    <td><input class="cell" id="pid" type="text"/></td>
+		    <td><input class="cell" id="rat" type="text"/></td>
+		    <td><input class="cell" id="zub" type="text"/></td>
+		    <td><input class="cell" id="spe" type="text"/></td>
+		    <td class="center">Huevo Suerte</td>
+		  </tr>
+		  <tr>
+		  	<td class="center">Necesarios</td>
+		  	<td><input class="cell" id="weeN" type="text" disabled/></td>
+		    <td><input class="cell" id="pidN" type="text" disabled/></td>
+		    <td><input class="cell" id="ratN" type="text" disabled/></td>
+		    <td><input class="cell" id="zubN" type="text" disabled/></td>
+		    <td><input class="cell" id="speN" type="text" disabled/></td>
+		    <td class="center"><input id="bonus" type="checkbox"/></td>
+		  </tr>
+		  <tr>
+		  	<td class="center">Experiencia</td>
+		  	<td><input class="cell" id="weeXP" type="text" disabled/></td>
+		    <td><input class="cell" id="pidXP" type="text" disabled/></td>	    
+		    <td><input class="cell" id="ratXP" type="text" disabled/></td>
+		    <td><input class="cell" id="zubXP" type="text" disabled/></td>
+		    <td><input class="cell" id="speXP" type="text" disabled/></td>
+		    <td><input class="cell" id="total" type="text" disabled/></td>
+		  </tr>
+		  <tr>
+		  	<td class="center">Tiempo</td>
+		  	<td><input class="cell" id="weeT" type="text" disabled/></td>
+		    <td><input class="cell" id="pidT" type="text" disabled/></td>
+		    <td><input class="cell" id="ratT" type="text" disabled/></td>
+		    <td><input class="cell" id="zubT" type="text" disabled/></td>
+		    <td><input class="cell" id="speT" type="text" disabled/></td>
+		    <td><input class="cell" id="tiempo" type="text" disabled/></td>
+		  </tr>
+		</table>
+		<script type="text/javascript">
+			var cat = 12;
+			var wee = 12;
+			var pid = 12;
+			var cat = 12;
+			var rat = 25;
+			var zub = 50;
+			var spe = 50;
+
+			var ids = ["cat", "pid", "rat", "wee", "zub", "spe"];
+			var idsXP = ["catXP", "pidXP", "ratXP", "weeXP", "zubXP", "speXP"];
+
+			// EVENTO
+			document.getElementById("pid").addEventListener('focusout', calcula);
+			document.getElementById("rat").addEventListener('focusout', calcula);
+			document.getElementById("wee").addEventListener('focusout', calcula);
+			document.getElementById("zub").addEventListener('focusout', calcula);
+			document.getElementById("spe").addEventListener('focusout', calcula);
+			document.getElementById("bonus").addEventListener('click', calcula);
+
+			function calcula() {
+				document.getElementById("pidN").value = Math.floor(document.getElementById("pid").value / pid);
+				document.getElementById("pidXP").value = document.getElementById("pidN").value * 500;
+				document.getElementById("pidT").value = document.getElementById("pidN").value * 0.5;
+
+				document.getElementById("ratN").value = Math.floor(document.getElementById("rat").value / rat);
+				document.getElementById("ratXP").value = document.getElementById("ratN").value * 500;
+				document.getElementById("ratT").value = document.getElementById("ratN").value * 0.5;
+
+				document.getElementById("weeN").value = Math.floor(document.getElementById("wee").value / wee);
+				document.getElementById("weeXP").value = document.getElementById("weeN").value * 500;
+				document.getElementById("weeT").value = document.getElementById("weeN").value * 0.5;
+
+				document.getElementById("zubN").value = Math.floor(document.getElementById("zub").value / zub);
+				document.getElementById("zubXP").value = document.getElementById("zubN").value * 500;
+				document.getElementById("zubT").value = document.getElementById("zubN").value * 0.5;
+
+				document.getElementById("speN").value = Math.floor(document.getElementById("spe").value / spe);
+				document.getElementById("speXP").value = document.getElementById("speN").value * 500;
+				document.getElementById("speT").value = document.getElementById("speN").value * 0.5;
+
+				if(document.getElementById("bonus").checked == false) {
+					document.getElementById("total").value = parseInt(document.getElementById("pidXP").value) + parseInt(document.getElementById("ratXP").value) + parseInt(document.getElementById("weeXP").value) + parseInt(document.getElementById("zubXP").value) + parseInt(document.getElementById("speXP").value) + " XP";
+				}
+				else {
+					document.getElementById("total").value = (parseInt(document.getElementById("pidXP").value) + parseInt(document.getElementById("ratXP").value) + parseInt(document.getElementById("weeXP").value) + parseInt(document.getElementById("zubXP").value) + parseInt(document.getElementById("speXP").value)) * 2 + " XP";
+				}
+
+				document.getElementById("tiempo").value = parseFloat(document.getElementById("pidT").value) + parseFloat(document.getElementById("ratT").value) + parseFloat(document.getElementById("weeT").value) + parseFloat(document.getElementById("zubT").value) + parseFloat(document.getElementById("speT").value) + " min";
+			}
+			
+		</script>
+	</body>
+</html>
