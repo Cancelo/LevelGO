@@ -4,77 +4,110 @@
 		<meta charset="utf-8"/>
 		<title>PowerLevel GO</title>
 		<style type="text/css">
+			@import url(https://fonts.googleapis.com/css?family=Ubuntu);
+
+			body {
+				font-family: 'Ubuntu', sans-serif;
+			}
+
+			table {
+				margin: 0 auto;
+			}
+
 			img {
 				width: 100px;
 			}
 
-			table, td, tr, th {
-				border: 1px solid #000;
+			th {
+				border: 1px solid #a9a9a9;
 			}
 
 			.cell {
 				width: 100px;
+				padding: 10px;
 			}
 
 			.center {
 				text-align: center;
 				border: 0px;
-				background: #f9f9f9;
 			}
 
 			#total, #tiempo {
 				background: #FFF176;
+    			border: 2px solid #a9a9a9;
+    			font-size: 1em;
+    			color: #000;
+			}
+
+			#progressBar {
+				width: 600px;
 			}
 		</style>
 	</head>
 	<body>
-		<table>
-		  <tr>
-		  	<th class="center"></th>
-		  	<th><img src="wee.png"/></th>
-		    <th><img src="pid.png"/></th>
-		    <th><img src="rat.png"/></th>
-		    <th><img src="zub.png"/></th>
-		    <th><img src="spe.png"/></th>
-		    <th>TOTAL</th>
-		  </tr>
-		  <tr>
-		  	<td class="center">Caramelos</td>
-		  	<td><input class="cell" id="wee" type="text"/></td>
-		    <td><input class="cell" id="pid" type="text"/></td>
-		    <td><input class="cell" id="rat" type="text"/></td>
-		    <td><input class="cell" id="zub" type="text"/></td>
-		    <td><input class="cell" id="spe" type="text"/></td>
-		    <td class="center">Huevo Suerte</td>
-		  </tr>
-		  <tr>
-		  	<td class="center">Necesarios</td>
-		  	<td><input class="cell" id="weeN" type="text" disabled/></td>
-		    <td><input class="cell" id="pidN" type="text" disabled/></td>
-		    <td><input class="cell" id="ratN" type="text" disabled/></td>
-		    <td><input class="cell" id="zubN" type="text" disabled/></td>
-		    <td><input class="cell" id="speN" type="text" disabled/></td>
-		    <td class="center"><input id="bonus" type="checkbox"/></td>
-		  </tr>
-		  <tr>
-		  	<td class="center">Experiencia</td>
-		  	<td><input class="cell" id="weeXP" type="text" disabled/></td>
-		    <td><input class="cell" id="pidXP" type="text" disabled/></td>	    
-		    <td><input class="cell" id="ratXP" type="text" disabled/></td>
-		    <td><input class="cell" id="zubXP" type="text" disabled/></td>
-		    <td><input class="cell" id="speXP" type="text" disabled/></td>
-		    <td><input class="cell" id="total" type="text" disabled/></td>
-		  </tr>
-		  <tr>
-		  	<td class="center">Tiempo</td>
-		  	<td><input class="cell" id="weeT" type="text" disabled/></td>
-		    <td><input class="cell" id="pidT" type="text" disabled/></td>
-		    <td><input class="cell" id="ratT" type="text" disabled/></td>
-		    <td><input class="cell" id="zubT" type="text" disabled/></td>
-		    <td><input class="cell" id="speT" type="text" disabled/></td>
-		    <td><input class="cell" id="tiempo" type="text" disabled/></td>
-		  </tr>
-		</table>
+		<div id="main">
+			<table>
+			  <tr>
+			  	<th class="center"></th>
+			  	<th><img src="cat.png" alt="Caterpie" title="Caterpie"/></th>
+			  	<th><img src="wee.png" alt="Weedle" title="Weedle"/></th>
+			    <th><img src="pid.png" alt="Pidgey" title="Pidgey"/></th>
+			    <th><img src="rat.png" alt="Rattata" title="Rattata"/></th>
+			    <th><img src="spe.png" alt="Spearow" title="Spearow"/></th>
+			    <th><img src="zub.png" alt="Zubat" title="Zubat"/></th>
+			    
+			    <th>TOTAL</th>
+			  </tr>
+			  <tr>
+			  	<td class="center">Caramelos</td>
+			  	<td><input class="cell" id="cat" type="number" min="0"/></td>
+			  	<td><input class="cell" id="wee" type="number" min="0"/></td>
+			    <td><input class="cell" id="pid" type="number" min="0"/></td>
+			    <td><input class="cell" id="rat" type="number" min="0"/></td>
+			    <td><input class="cell" id="spe" type="number" min="0"/></td>
+			    <td><input class="cell" id="zub" type="number" min="0"/></td>
+			    
+			    <td class="center">Huevo Suerte</td>
+			  </tr>
+			  <tr>
+			  	<td class="center">Necesarios</td>
+			  	<td><input class="cell" id="catN" type="text" disabled/></td>
+			  	<td><input class="cell" id="weeN" type="text" disabled/></td>
+			    <td><input class="cell" id="pidN" type="text" disabled/></td>
+			    <td><input class="cell" id="ratN" type="text" disabled/></td>
+			    <td><input class="cell" id="speN" type="text" disabled/></td>
+			    <td><input class="cell" id="zubN" type="text" disabled/></td>
+			    
+			    <td class="center"><input id="bonus" type="checkbox" checked="checked"/></td>
+			  </tr>
+			  <tr>
+			  	<td class="center">Experiencia</td>
+			  	<td><input class="cell" id="catXP" type="text" disabled/></td>
+			  	<td><input class="cell" id="weeXP" type="text" disabled/></td>
+			    <td><input class="cell" id="pidXP" type="text" disabled/></td>	    
+			    <td><input class="cell" id="ratXP" type="text" disabled/></td>
+			    <td><input class="cell" id="speXP" type="text" disabled/></td>
+			    <td><input class="cell" id="zubXP" type="text" disabled/></td>
+			    
+			    <td><input class="cell" id="total" type="text" disabled/></td>
+			  </tr>
+			  <tr>
+			  	<td class="center">Tiempo</td>
+			  	<td><input class="cell" id="catT" type="text" disabled/></td>
+			  	<td><input class="cell" id="weeT" type="text" disabled/></td>
+			    <td><input class="cell" id="pidT" type="text" disabled/></td>
+			    <td><input class="cell" id="ratT" type="text" disabled/></td>
+			    <td><input class="cell" id="speT" type="text" disabled/></td>
+			    <td><input class="cell" id="zubT" type="text" disabled/></td>
+			    
+			    <td><input class="cell" id="tiempo" type="text" disabled/></td>
+			  </tr>			 
+			</table>
+			<h3 class="center"><progress id="progressBar" value="0" max="100"></progress></h3>
+			<h3 class="center" id="porRest"></h3>
+			<h3 class="center" id="minRest"></h3>
+			<h3 class="center" id="pokRest"></h3>
+		</div>
 		<script type="text/javascript">
 			var cat = 12;
 			var wee = 12;
@@ -84,10 +117,15 @@
 			var zub = 50;
 			var spe = 50;
 
+			var porcentaje = 0;
+			var minutos = 0;
+			var pokemon = 0;
+
 			var ids = ["cat", "pid", "rat", "wee", "zub", "spe"];
 			var idsXP = ["catXP", "pidXP", "ratXP", "weeXP", "zubXP", "speXP"];
 
 			// EVENTO
+			document.getElementById("cat").addEventListener('focusout', calcula);
 			document.getElementById("pid").addEventListener('focusout', calcula);
 			document.getElementById("rat").addEventListener('focusout', calcula);
 			document.getElementById("wee").addEventListener('focusout', calcula);
@@ -95,7 +133,13 @@
 			document.getElementById("spe").addEventListener('focusout', calcula);
 			document.getElementById("bonus").addEventListener('click', calcula);
 
+			// valida form			
+
 			function calcula() {
+				document.getElementById("catN").value = Math.floor(document.getElementById("cat").value / cat);
+				document.getElementById("catXP").value = document.getElementById("catN").value * 500;
+				document.getElementById("catT").value = document.getElementById("catN").value * 0.5;
+
 				document.getElementById("pidN").value = Math.floor(document.getElementById("pid").value / pid);
 				document.getElementById("pidXP").value = document.getElementById("pidN").value * 500;
 				document.getElementById("pidT").value = document.getElementById("pidN").value * 0.5;
@@ -117,15 +161,51 @@
 				document.getElementById("speT").value = document.getElementById("speN").value * 0.5;
 
 				if(document.getElementById("bonus").checked == false) {
-					document.getElementById("total").value = parseInt(document.getElementById("pidXP").value) + parseInt(document.getElementById("ratXP").value) + parseInt(document.getElementById("weeXP").value) + parseInt(document.getElementById("zubXP").value) + parseInt(document.getElementById("speXP").value) + " XP";
+					document.getElementById("total").value = parseInt(document.getElementById("pidXP").value) + parseInt(document.getElementById("ratXP").value) + parseInt(document.getElementById("weeXP").value) + parseInt(document.getElementById("zubXP").value) + parseInt(document.getElementById("speXP").value) + parseInt(document.getElementById("catXP").value) + " XP";
 				}
 				else {
-					document.getElementById("total").value = (parseInt(document.getElementById("pidXP").value) + parseInt(document.getElementById("ratXP").value) + parseInt(document.getElementById("weeXP").value) + parseInt(document.getElementById("zubXP").value) + parseInt(document.getElementById("speXP").value)) * 2 + " XP";
+					document.getElementById("total").value = (parseInt(document.getElementById("pidXP").value) + parseInt(document.getElementById("ratXP").value) + parseInt(document.getElementById("weeXP").value) + parseInt(document.getElementById("zubXP").value) + parseInt(document.getElementById("speXP").value) + parseInt(document.getElementById("catXP").value)) * 2 + " XP";
 				}
 
-				document.getElementById("tiempo").value = parseFloat(document.getElementById("pidT").value) + parseFloat(document.getElementById("ratT").value) + parseFloat(document.getElementById("weeT").value) + parseFloat(document.getElementById("zubT").value) + parseFloat(document.getElementById("speT").value) + " min";
+				document.getElementById("tiempo").value = parseFloat(document.getElementById("pidT").value) + parseFloat(document.getElementById("ratT").value) + parseFloat(document.getElementById("weeT").value) + parseFloat(document.getElementById("zubT").value) + parseFloat(document.getElementById("speT").value) + parseFloat(document.getElementById("catT").value) + " min";
+
+				info();
 			}
-			
+
+			function info() {
+				porcentaje = ((parseFloat(document.getElementById("tiempo").value) * 100) / 30).toFixed(1);
+				minutos = 30 - parseFloat(document.getElementById("tiempo").value);
+				pokemon = minutos / 0.5;
+
+				document.getElementById("progressBar").value = porcentaje;
+
+				if(porcentaje > 100) {
+					document.getElementById("porRest").innerHTML = "<imgsrc='luckyegg.png'/></br>Debes utilizar mas de 1 huevo.";
+				}
+				else {
+					document.getElementById("porRest").innerHTML = porcentaje + "% del huevo de la suerte aprovechado.";
+				}				
+
+				if(minutos < 0) {
+					document.getElementById("minRest").innerHTML =  Math.abs(minutos) + " min de exceso.";
+				}
+				else if(minutos == 0) {
+					document.getElementById("minRest").innerHTML = "";
+				}
+				else {
+					document.getElementById("minRest").innerHTML = minutos + " min restantes.";
+				}
+
+				if(pokemon < 0) {
+					document.getElementById("pokRest").innerHTML = "";
+				}
+				else if(pokemon == 0) {
+					document.getElementById("pokRest").innerHTML = "";
+				}
+				else {
+					document.getElementById("pokRest").innerHTML = "Puedes evolucionar " + pokemon + " Pokémon mas.";
+				}				
+			}			
 		</script>
 	</body>
 </html>
